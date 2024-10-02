@@ -1,0 +1,76 @@
+#include <iostream>
+#include <string>
+using namespace std;
+// Konstanta untuk jumlah barang dan jasa kirim
+const int barang_kode = 8;
+const int kode_jasakirim = 3;
+// Array untuk barang dan harga
+string barang[barang_kode] = {"Laptop", "Computer", "Printer", "Webcam", "PC", "Proyektor", "WiFi",
+"Mouse & Keyboard"};
+int harga_barang[barang_kode] = {15000000, 10000000, 3000000, 500000, 7000000, 5000000, 300000,
+200000};
+// Array untuk jasa kirim dan harga kirim
+string jasa_kirim[kode_jasakirim] = {"JNT Express", "JNE", "Si Cepat"};
+int harga_kirim[kode_jasakirim] = {20000, 15000, 10000};
+// Fungsi utama
+int main() {
+int jumlah_beli, total_bayar, kode_barang, jumlah, kode_jasakirim, h_brg, tot_hrg = 0, tot, hrg_kirim,
+tot_krm = 0;
+string nama_pembeli, alamat;
+// Menampilkan daftar barang dan harga
+cout << "Daftar Barang dan Harga:\n";
+for (int i = 0; i < barang_kode; i++) {
+cout << i + 1 << ". " << barang[i] << " - Rp" << harga_barang[i] << endl;
+}
+// Input jumlah barang yang akan dibeli
+cout << "\nMasukkan jumlah barang yang akan dipilih: ";
+cin >> jumlah_beli;
+// Proses perulangan untuk memasukkan barang yang dibeli
+for (int i = 0; i < jumlah_beli; i++) {
+cout << "Masukkan kode barang (1-8): ";
+cin >> kode_barang;
+// Validasi kode barang
+if (kode_barang >= 1 && kode_barang <= 8) {
+h_brg = harga_barang[kode_barang - 1]; // Harga barang
+cout << "Barang: " << barang[kode_barang - 1] << " - Harga: Rp" << h_brg << endl;
+cout << "Masukkan jumlah barang yang dibeli: ";
+cin >> jumlah;
+tot = jumlah * h_brg; // Menghitung total harga untuk barang yang dibeli
+tot_hrg += tot; // Menambahkan total harga ke total keseluruhan
+} else {
+cout << "Kode barang tidak valid!\n";
+}
+}
+// Menampilkan total harga barang
+cout << "\nTotal harga barang: Rp" << tot_hrg << endl;
+// Menampilkan daftar jasa kirim dan harga kirim
+cout << "\nDaftar Jasa Kirim dan Harga:\n";
+for (int i = 0; i < kode_jasakirim; i++) {
+cout << i + 1 << ". " << jasa_kirim[i] << " - Rp" << harga_kirim[i] << endl;
+}
+// Input kode jasa kirim
+cout << "\nMasukkan kode jasa kirim (1-3): ";
+cin >> kode_jasakirim;
+// Validasi kode jasa kirim
+if (kode_jasakirim >= 1 && kode_jasakirim <= 3) {
+hrg_kirim = harga_kirim[kode_jasakirim - 1]; // Harga kirim
+cout << "Jasa Kirim: " << jasa_kirim[kode_jasakirim - 1] << " - Harga Kirim: Rp" << hrg_kirim << endl;
+tot_krm = hrg_kirim; // Menyimpan total harga jasa kirim
+} else {
+cout << "Kode jasa kirim tidak valid!\n";
+}
+// Input data pembeli
+cout << "\nMasukkan Nama Pembeli: ";
+cin.ignore(); // Mengabaikan newline dari input sebelumnya
+getline(cin, nama_pembeli);
+cout << "Masukkan Alamat: ";
+getline(cin, alamat);
+// Menghitung total pembayaran
+total_bayar = tot_hrg + tot_krm;
+// Output riwayat pembelian dan total bayar
+cout << "\nRiwayat Pembeli:\n";
+cout << "Nama Pembeli: " << nama_pembeli << endl;
+cout << "Alamat: " << alamat << endl;
+cout << "Total Pembayaran (Barang + Jasa Kirim): Rp" << total_bayar << endl;
+return 0;
+}
